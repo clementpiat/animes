@@ -1,0 +1,6 @@
+# Database settings
+DB_HOST_DEV: '127.0.0.1'
+DB_PORT_DEV: '3306'
+DB_NAME_PREFIX_DEV: 'animes'
+DB_USER_DEV: 'clementpiat'
+DB_PASSWORD_DEV: '.u=Tb3kKL*'

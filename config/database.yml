@@ -1,0 +1,10 @@
+development:
+  adapter: mysql2
+  pool: 5
+  encoding: utf8
+  username: <%= ENV['DB_USER_DEV'] %>
+  password: <%= ENV['DB_PASSWORD_DEV'] %>
+  host: <%= ENV['DB_HOST_DEV'] %>
+  port: <%= ENV['DB_PORT_DEV'] %>
+  database: <%= ENV['DB_NAME_PREFIX_DEV'].presence || 'animes' %>_development
+
