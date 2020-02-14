@@ -1,0 +1,23 @@
+.card {
+    border: 1px solid #eeeeee;
+    border-radius: 1px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #ffffff;
+  
+    &::after {
+      clear: both;
+      display: table;
+      content: '';
+    }
+  }
+  
+  .card--small {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .card--faded {
+    opacity: 0.5;
+  }
+  

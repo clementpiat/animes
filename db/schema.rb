@@ -10,16 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_032341) do
+ActiveRecord::Schema.define(version: 2020_02_14_015022) do
 
   create_table "animes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name"
+    t.string "name", collation: "utf8mb4_unicode_ci"
+    t.string "image_file_name"
+    t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_animes_on_name"
   end
 
-  create_table "musics", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "animes_playlists", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.bigint "playlist_id", null: false
+    t.bigint "anime_id", null: false
+    t.index ["playlist_id", "anime_id"], name: "index_animes_playlists_on_playlist_id_and_anime_id"
+  end
+
+  create_table "musics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.text "youtube_url"
     t.bigint "anime_id"
@@ -28,18 +36,21 @@ ActiveRecord::Schema.define(version: 2020_02_10_032341) do
     t.index ["anime_id"], name: "index_musics_on_anime_id"
   end
 
-  create_table "musics_playlists", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "musics_playlists", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.bigint "playlist_id", null: false
     t.bigint "music_id", null: false
     t.index ["playlist_id", "music_id"], name: "index_musics_playlists_on_playlist_id_and_music_id"
   end
 
-  create_table "playlists", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "playlists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_playlists_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "email"
     t.string "password"
     t.string "name"

@@ -1,0 +1,21 @@
+%h6 Select your animes
+
+
+.col-4
+    %input{class: 'form-control ', type: 'search ', placeholder: 'Search ', aria_label: 'Search '}
+
+%table.table.table-striped
+    %thead
+        %tr
+            %th{colspan: '2'}
+
+    %tbody
+    - Anime.first(50).each do |anime| 
+        %tr
+        %td
+            -# TODO: do this in a helper
+            = image_tag("animes/#{anime.image_file_name}")
+        %td= anime.name
+        %td
+            = check_box_tag anime.rank
+            
