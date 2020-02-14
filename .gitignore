@@ -32,3 +32,9 @@
 
 # Ignore images in assets
 /app/assets/images
+
+# Ignore python file
+/python
+
+# Ignore a specific file
+/db/*.png
