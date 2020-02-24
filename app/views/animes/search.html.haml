@@ -1,0 +1,6 @@
+.card
+  = render 'search_bar'
+
+  - if @query.present?
+    %h6 Results for search "#{@query}"
+  = render 'table'

@@ -1,28 +1,20 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
-  # GET /playlists
-  # GET /playlists.json
   def index
     @playlists = Playlist.all
   end
 
-  # GET /playlists/1
-  # GET /playlists/1.json
   def show
   end
 
-  # GET /playlists/new
   def new
     @playlist = Playlist.new
   end
 
-  # GET /playlists/1/edit
   def edit
   end
 
-  # POST /playlists
-  # POST /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)
     @playlist.user = User.first
@@ -38,8 +30,6 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /playlists/1
-  # PATCH/PUT /playlists/1.json
   def update
     respond_to do |format|
       if @playlist.update(playlist_params)
@@ -52,8 +42,6 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  # DELETE /playlists/1
-  # DELETE /playlists/1.json
   def destroy
     @playlist.destroy
     respond_to do |format|

@@ -1,0 +1,9 @@
+.row
+    .col-3
+    .col-6
+        = form_tag search_animes_path, method: :post do
+            .input-group{style: 'margin-bottom: 10vh; margin-top: 5vh;'}
+                -# %input{type: 'search', placeholder: "What anime are you looking for?", aria_describedby: 'button-addon1', class: 'form-control border-0 bg-light'}
+                = search_field_tag 'query', '', {class: 'form-control border-0 bg-light', placeholder: "What anime do you want in your playlist?", aria_label: 'Search'}
+                = submit_tag 'Search', class: 'btn btn-outline-success my-2 my-sm-0'
+    .col-3

@@ -203,6 +203,8 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     sexp_processor (4.14.1)
+    simple_enum (1.6.9)
+      activesupport (>= 3.0.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -256,6 +258,7 @@ DEPENDENCIES
   rails (~> 5.2.4, >= 5.2.4.1)
   sass-rails (~> 5.0)
   selenium-webdriver
+  simple_enum
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

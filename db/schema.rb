@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_14_015022) do
+ActiveRecord::Schema.define(version: 2020_02_23_183346) do
 
   create_table "animes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", collation: "utf8mb4_unicode_ci"
-    t.string "image_file_name"
+    t.string "image_file_name", collation: "utf8mb4_unicode_ci"
     t.integer "rank"
+    t.text "alternative_names", collation: "utf8mb4_unicode_ci"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_animes_on_name"
@@ -29,7 +30,8 @@ ActiveRecord::Schema.define(version: 2020_02_14_015022) do
 
   create_table "musics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
-    t.text "youtube_url"
+    t.integer "type_cd"
+    t.string "youtube_video_id"
     t.bigint "anime_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

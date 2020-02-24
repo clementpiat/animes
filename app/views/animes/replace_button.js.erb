@@ -1,0 +1,2 @@
+<% replacement_form = j render 'animes/in_playlist_button', anime: @anime, playlist: @playlist %>
+$('#anime-status_button-<%= @anime.id %>').replaceWith('<%= replacement_form %>');

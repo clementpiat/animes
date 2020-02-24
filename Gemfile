@@ -73,3 +73,6 @@ gem 'jquery-rails'
 
 # Pagination gem
 gem 'kaminari'
+
+# To use as_enum
+gem 'simple_enum'

@@ -3,26 +3,8 @@
 .card
   %h1 Animes List
 
-  .input-group{style: 'float: right;'}
-    %input{type: 'search', placeholder: "What anime are you looking for?", aria_describedby: 'button-addon1', class: 'form-control border-0 bg-light'}
-
-  %table.table.table-striped
-    %thead
-      %tr
-        %th{colspan: '2'}
-
-    %tbody
-      - @animes.each do |anime| 
-        %tr
-          %td
-            -# TODO: do this in a helper
-            = image_tag("animes/#{anime.image_file_name}")
-          %td= anime.name
-          %td
-            -# Here we have to do some jquery
-            -# Create a way to add to playlist 
-            .btn.btn-outline-primary.btn-sm Add to playlist
-          
+  = render 'search_bar'
+  = render 'table'
 
   = paginate @animes
   -# = link_to 'New Anime', new_anime_path

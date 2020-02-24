@@ -1,0 +1,8 @@
+-# anime
+
+.card
+    -# TODO: do this in a helper
+    -# = ("animes/#{anime.image_file_name}")
+    %h4= anime.name
+    - anime.musics.each do |music|
+        = render 'music', music: music

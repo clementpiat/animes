@@ -1,6 +1,12 @@
+-# playlist
+
 %p{id: 'notice'}= notice
 
-%h2= @playlist.name
+.card
+    %h2= @playlist.name
 
-= link_to 'Edit', edit_anime_path(@playlist), class: 'btn btn-outline-primary'
-= link_to 'Back', animes_path, class: 'btn btn-outline-dark'
+    - @playlist.animes.each do |anime|
+        = render 'anime', anime: anime
+
+    = link_to 'Edit', edit_playlist_path(@playlist), class: 'btn btn-outline-primary'
+    = link_to 'Back', animes_path, class: 'btn btn-outline-dark'

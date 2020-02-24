@@ -1,0 +1,11 @@
+%p{id: 'notice'}= notice
+
+%div
+  %h1 Playlists
+
+  %ul
+    - @playlists.each do |p|
+      %li= link_to p.name, playlist_path(p), class: 'btn btn-link', role: 'button'
+        
+
+= link_to 'New Playlist', new_playlist_path
