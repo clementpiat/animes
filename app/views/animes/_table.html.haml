@@ -1,6 +1,4 @@
 - no_button ||= false
--# TODO: change obviously
-- playlist = Playlist.first
 - animes ||= @animes
 
 %table.table.table-hover
@@ -15,8 +13,8 @@
                 %td
                     -# Here we have to do some jquery
                     -# Create a way to add to playlist
-                    - if anime.in?(playlist.animes)
-                        = render 'in_playlist_button', anime: anime, playlist: playlist
+                    - if anime.in?(@playlist.animes)
+                        = render 'in_playlist_button', anime: anime, playlist: @playlist
                     - else
-                        = link_to 'Add to playlist', add_to_playlist_anime_path(anime), method: :post, remote: true, 
+                        = link_to 'Add to playlist', add_to_playlist_anime_path(id: anime, playlist_id: @playlist), method: :post, remote: true, 
                             id: "anime-status_button-#{anime.id}", class: 'btn btn-outline-primary btn-sm'

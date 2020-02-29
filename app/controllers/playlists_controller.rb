@@ -1,23 +1,27 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :remove_anime, :add_custom_music]
 
   def index
-    @playlists = Playlist.all
+    authorize! :index, Playlist
+
+    @playlists = current_user&.playlists || []
   end
 
   def show
+    authorize! :index, @playlist
   end
 
   def new
-    @playlist = Playlist.new
-  end
+    authorize! :new, Playlist
 
-  def edit
+    @playlist = Playlist.new
   end
 
   def create
     @playlist = Playlist.new(playlist_params)
-    @playlist.user = User.first
+    @playlist.user = current_user
+
+    authorize! :create, @playlist
 
     respond_to do |format|
       if @playlist.save
@@ -30,24 +34,47 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  def update
-    respond_to do |format|
-      if @playlist.update(playlist_params)
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @playlist }
-      else
-        format.html { render :edit }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
+    authorize! :destroy, @playlist
+
     @playlist.destroy
     respond_to do |format|
       format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def remove_anime
+    authorize! :remove_anime, @playlist
+
+    @anime = Anime.find(params[:anime_id])
+
+    musics_to_delete = @playlist.musics_for_anime(@anime)
+
+    if @playlist.musics.delete(musics_to_delete) && @playlist.animes.delete(@anime)    
+      render 'replace_remove_button'
+    else
+      render action: :show
+    end
+  end
+
+  def add_custom_music
+    # TODO: actually add music to playlist and before music to db with custom type
+    # TODO: parse this url
+    @anime = Anime.find(params[:anime_id])
+    youtube_video_id = Music.url_to_id(params[:youtube_video_url])
+    @music = Music.where(youtube_video_id: youtube_video_id).first || Music.new(youtube_video_id: youtube_video_id, type: :custom, name: params[:youtube_video_url])
+    if @music.anime.present? && @music.anime != @anime
+      raise "This music can't be associated to this anime"
+    end
+
+    @music.anime = @anime
+    @music.save!
+
+    @playlist.musics << @music
+    @playlist.save!
+
+    render 'replace_custom_musics_form'
   end
 
   private

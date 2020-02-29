@@ -1,0 +1,4 @@
+var $input = $('#custom_musics_form-<%= @anime.id %>');
+var newCustomMusicContent = "<%= j render 'playlists/music', music: @music %>";
+
+$input.before(newCustomMusicContent);

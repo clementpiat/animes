@@ -5,4 +5,6 @@ class Anime < ApplicationRecord
     paginates_per 50
 
     serialize :alternative_names, Array
+
+    validates :name, uniqueness: true
 end

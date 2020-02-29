@@ -1,12 +1,27 @@
 -# playlist
 
-%p{id: 'notice'}= notice
 
-.card
-    %h2= @playlist.name
+%h2= @playlist.name
 
-    - @playlist.animes.each do |anime|
-        = render 'anime', anime: anime
+- number_of_animes = @playlist.animes.length
+-# TODO: should be updated dynamically when removing an aime from playlist
+%span #{number_of_animes} anime#{'s' if number_of_animes > 1} in playlist
 
-    = link_to 'Edit', edit_playlist_path(@playlist), class: 'btn btn-outline-primary'
-    = link_to 'Back', animes_path, class: 'btn btn-outline-dark'
+
+= link_to animes_path(playlist_id: @playlist), class: 'btn btn-outline-primary', style: 'margin: 10px;' do
+    %i.fa.fa-plus 
+    Add animes
+
+- @playlist.animes.each do |anime|
+    = render 'anime', anime: anime
+
+
+-# This will have to change if we add something like remove videos on the flight (maybe useless feature no?)
+- music_ids = @playlist.animes.map { |anime| anime.musics.map(&:youtube_video_id) }.flatten
+-# limited to 50 videos for now
+= link_to 'Get entire playlist', "https://www.youtube.com/watch_videos?video_ids=#{music_ids.shuffle.join(',')}", 
+    target: '_blank', class: 'btn btn-outline-primary', style: 'margin: 10px;'
+
+
+-# = link_to 'Edit', edit_playlist_path(@playlist), class: 'btn btn-outline-primary'
+-# = link_to 'Back', animes_path, class: 'btn btn-outline-dark'

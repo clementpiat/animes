@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  root to: 'animes#index'
+  root to: 'playlists#index'
 
-  resources :playlists
-  resources :animes, only: [:index, :show] do
+  resources :playlists, only: [:index, :show, :new, :create, :destroy] do
+    member do
+      post 'remove_anime'
+      post 'add_custom_music'
+    end
+  end
+
+  resources :animes, only: :index do
     collection do
       post 'search'
       get 'search'
@@ -12,4 +18,11 @@ Rails.application.routes.draw do
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :users, only: :new
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get 'signup', to: "users#new", as: 'signup'
+  get 'login', to: "sessions#new", as: 'login'
+  get 'logout', to: "sessions#destroy", as: 'logout'
 end

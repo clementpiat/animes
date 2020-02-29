@@ -1,0 +1,11 @@
+-# playlist
+-# anime
+
+- form_id = "custom_musics_form-#{anime.id}"
+= form_tag add_custom_music_playlist_path(id: @playlist.id, anime_id: anime.id), method: :post, remote: true, class: 'form-inline', id: form_id do
+    .form-group.row{style: 'margin-right: 10px; margin-left: 10px;'}
+        = label_tag :youtube_video_url, 'Youtube URL', class: 'col-form-label col-4'
+        .col-6
+            = text_field_tag :youtube_video_url, '', class: 'form-control'
+
+    = submit_tag 'Add', class: 'btn btn-primary'

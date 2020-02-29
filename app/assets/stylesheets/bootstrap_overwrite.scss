@@ -1,6 +1,12 @@
+@import "font-awesome";
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 body {
     background-color: #fbf9f9 !important;
     color: #3e4639 !important;
     font-family: 'Roboto' !important;
+}
+
+.btn {
+    max-width: 10vw;   
 }

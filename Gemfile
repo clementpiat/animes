@@ -76,3 +76,11 @@ gem 'kaminari'
 
 # To use as_enum
 gem 'simple_enum'
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'font-awesome-rails'
+
+# Authorization gem
+gem 'cancancan'

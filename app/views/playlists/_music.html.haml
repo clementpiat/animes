@@ -1,7 +1,11 @@
 -# music
 
 %div
-    = link_to image_tag('musics/_-2bXW5e6ak.jpg' || "musics/#{music.youtube_video_id}.jpg"), "https://youtube.com/w?=#{music.youtube_video_id}", target: '_blank',  style: 'float: left; margin-right: 5vw;'
-    %h6= music.name
+    - if music.type == :custom
+        = link_to music.youtube_video_url, "https://youtube.com/watch?v=#{music.youtube_video_id}", 
+            target: '_blank', class: 'youtube_url'
+    - else
+        = link_to image_tag("musics/#{music.youtube_video_id}.jpg", size: "160x100"), "https://youtube.com/watch?v=#{music.youtube_video_id}", 
+            target: '_blank',  style: 'float: left; margin-right: 5vw; margin-bottom: 1vw;'
+        %h6= music.name
     
-       
