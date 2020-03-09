@@ -1,4 +1,14 @@
 var $input = $('#custom_musics_form-<%= @anime.id %>');
-var newCustomMusicContent = "<%= j render 'playlists/music', music: @music %>";
 
-$input.before(newCustomMusicContent);
+<% if @alert_msg.present? %>
+    var alertMessage = "<%= j render 'playlists/alert_msg', msg: @alert_msg %>"
+    
+    $input.before(alertMessage);
+<% else %>
+    var newCustomMusicContent = "<%= j render 'playlists/music', music: @music %>";
+
+    $input.before(newCustomMusicContent);
+
+    $btn = $('#get_entire_playlist-btn')
+    $btn.attr('href', $btn.attr('href') + ',' + '<%= @music.youtube_video_id %>') 
+<% end %>

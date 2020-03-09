@@ -35,7 +35,11 @@ class Ability
     
     can :index, Playlist
 
-    can :new, User
+    if user.blank?
+      # Signup and Login
+      can [:new, :create], User
+      can [:new, :create], SessionsController
+    end
     
     if user.present?
       # Playlist

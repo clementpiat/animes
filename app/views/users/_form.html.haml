@@ -1,4 +1,6 @@
-= form_for @user do |f|
+= form_for @user, class: 'form-signin' do |f|
+  %h1.h3.mb-3.font-weight-normal Sign up
+
   - if @user.errors.any?
     #error_explanation
       %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -6,11 +8,20 @@
         - @user.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.text_field :password
-  .actions
-    = f.submit 'Save'
+  = f.label :name, '', class: 'sr-only'  
+  = f.text_field :name, class: 'form-control', placeholder: 'Username'
+  = f.label :email, '', class: 'sr-only'  
+  = f.text_field :email, class: 'form-control', placeholder: 'Email'
+  = f.label :password, '', class: 'sr-only' 
+  = f.password_field :password, class: 'form-control', placeholder: 'Password'
+  = f.label :password_confirmation, '', class: 'sr-only' 
+  = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password'
+  .form-group
+    %legend{style: 'margin-top: 2vw; margin-bottom: 1vw;'} Pick an avatar
+    - User.characters.each do |option, label|
+      %label.radio
+        = f.radio_button :character, option
+        = image_tag("characters/#{option}.png", size: '195x135')
+
+
+  = f.submit 'Sign up', class: 'btn btn-primary margin-top'

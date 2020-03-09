@@ -6,16 +6,17 @@
     -# = ("animes/#{anime.image_file_name}")
     %div{style: 'margin-bottom: 20px;'}
         %h4{style: 'display: inline;'}= anime.name
-        = link_to remove_anime_playlist_path(anime_id: anime.id, id: @playlist.id), method: :post,
-                                remote: true, class: 'btn btn-outline-danger btn-sm', style: 'float: right;' do
-            %i.fa.fa-times
-            Remove anime
+        - if anime.name != 'Other'
+            = link_to remove_anime_playlist_path(anime_id: anime.id, id: @playlist.id), method: :post, remote: true,
+                                    class: 'btn btn-danger btn-sm', style: 'float: right;', data: {confirm: 'Are you sure?'} do
+                %i.fa.fa-times
+                Remove anime
 
     - @playlist.musics_for_anime(anime).each do |music|
         = render 'music', music: music
 
-
-    %h5{style: 'margin-bottom: 1vw;'} Include your own favorite OSTs of #{anime.name}
+    - end_msg = anime.name == 'Other' ? '' : "of #{anime.name}"
+    %h5{style: 'margin-bottom: 1vw;'} Include your own favorite OSTs #{end_msg}
     - @playlist.musics_for_anime(anime, custom: true).each do |music|
         = render 'music', music: music
 

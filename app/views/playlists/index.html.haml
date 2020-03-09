@@ -3,7 +3,10 @@
 
   %ul
     - @playlists.each do |p|
-      %li= link_to p.name, playlist_path(p), class: 'btn btn-link', role: 'button'
-        
+      %li
+        = link_to p.name, playlist_path(p), class: 'btn btn-link', role: 'button'
+        = link_to p, method: :delete, remote: true,
+                                      class: 'btn btn-danger btn-sm', style: 'color: white;', data: {confirm: 'Are you sure?'} do
+          %i.fa.fa-trash
 
-= link_to 'New Playlist', new_playlist_path
+= link_to 'Create a playlist!', new_playlist_path, class: 'btn btn-outline-primary'

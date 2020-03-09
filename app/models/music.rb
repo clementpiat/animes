@@ -4,7 +4,7 @@ class Music < ApplicationRecord
 
     as_enum :type, {ost: 0, opening: 1, custom: 2}
 
-    validates :name, uniqueness: true
+    # validates :name, uniqueness: true 
 
     def youtube_video_url
         "https://www.youtube.com/watch?v=#{youtube_video_id}"
@@ -13,6 +13,10 @@ class Music < ApplicationRecord
     # Parse a youtube url
     # TODO: safer?
     def self.url_to_id(youtube_video_url)
-        youtube_video_url.split('watch?v=')[1]
+        if youtube_video_url.present? && 'watch?v='.in?(youtube_video_url)
+            youtube_video_url.split('watch?v=').last.split('&').first
+        else
+            nil
+        end
     end
 end

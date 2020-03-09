@@ -1,6 +1,14 @@
+-# playlist
+-# query
+
+= link_to animes_path(playlist_id: @playlist), class: 'btn btn-outline-default', style: 'margin: 10px;' do
+  %i.fa.fa-arrow-left
+  Back to list
+  
 .card
   = render 'search_bar'
 
   - if @query.present?
     %h6 Results for search "#{@query}"
+    
   = render 'table'

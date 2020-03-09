@@ -84,3 +84,6 @@ gem 'font-awesome-rails'
 
 # Authorization gem
 gem 'cancancan'
+
+# Protect from bad users, limiting the number of requests
+gem 'rack-attack'

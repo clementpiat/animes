@@ -10,3 +10,24 @@ body {
 .btn {
     max-width: 10vw;   
 }
+
+$mainColor:#343a6e;
+
+.btn-primary {
+    @include button-variant($mainColor, darken($mainColor, 7.5%), darken($mainColor, 10%), lighten($mainColor,5%), lighten($mainColor, 10%), darken($mainColor,30%));
+}
+
+.btn-outline-primary {
+    @include button-outline-variant($mainColor, white, lighten($mainColor,5%), $mainColor);
+}
+
+$red: #ab2222;
+
+.btn-danger {
+    @include button-variant($red, darken($red, 7.5%), darken($red, 10%), lighten($red,5%), lighten($red, 10%), darken($red,30%));
+}
+
+.btn-outline-danger {
+    @include button-outline-variant($red, #222222, lighten($red,5%), $red);
+}
+

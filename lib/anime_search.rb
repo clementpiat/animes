@@ -1,7 +1,7 @@
 class AnimeSearch
     def self.fuzzy_matching(query)
         # TODO: better than last(10), take into account the actual distance value maybe
-        Anime.all.sort_by { |a| - anime_jaccard_similarity(a, query) }.first(10)
+        Anime.not_other.sort_by { |a| - anime_jaccard_similarity(a, query) }.first(10)
     end
 
     private

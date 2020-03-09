@@ -3,7 +3,9 @@
 
 %table.table.table-hover
     %tbody
-        - animes.each do |anime| 
+        - animes.each do |anime|
+            - next if anime.name == 'Other'
+
             %tr
             %td
                 -# TODO: do this in a helper

@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :remove_anime, :add_custom_music]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :remove_anime, :add_custom_music, :remove_music]
 
   def index
     authorize! :index, Playlist
@@ -8,7 +8,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    authorize! :index, @playlist
+    authorize! :show, @playlist
   end
 
   def new
@@ -22,6 +22,8 @@ class PlaylistsController < ApplicationController
     @playlist.user = current_user
 
     authorize! :create, @playlist
+
+    @playlist.animes = [Anime.other]
 
     respond_to do |format|
       if @playlist.save
@@ -49,10 +51,10 @@ class PlaylistsController < ApplicationController
 
     @anime = Anime.find(params[:anime_id])
 
-    musics_to_delete = @playlist.musics_for_anime(@anime)
+    musics_to_delete = @playlist.musics_for_anime(@anime) + @playlist.musics_for_anime(@anime, custom: true)
 
-    if @playlist.musics.delete(musics_to_delete) && @playlist.animes.delete(@anime)    
-      render 'replace_remove_button'
+    if @anime.name != 'Other' && @playlist.musics.delete(musics_to_delete) && @playlist.animes.delete(@anime)    
+      render 'remove_anime'
     else
       render action: :show
     end
@@ -63,9 +65,15 @@ class PlaylistsController < ApplicationController
     # TODO: parse this url
     @anime = Anime.find(params[:anime_id])
     youtube_video_id = Music.url_to_id(params[:youtube_video_url])
+    if youtube_video_id.blank?
+      @alert_msg = "Wrong format, you should enter something like https://www.youtube.com/watch?v=faqmNf_fZlE"
+      return render 'replace_custom_musics_form'
+    end
+
     @music = Music.where(youtube_video_id: youtube_video_id).first || Music.new(youtube_video_id: youtube_video_id, type: :custom, name: params[:youtube_video_url])
     if @music.anime.present? && @music.anime != @anime
-      raise "This music can't be associated to this anime"
+      # @alert_msg = "This music can't be associated to this anime"
+      @music = Music.new(youtube_video_id: youtube_video_id, type: :custom, name: params[:youtube_video_url])
     end
 
     @music.anime = @anime
@@ -75,6 +83,18 @@ class PlaylistsController < ApplicationController
     @playlist.save!
 
     render 'replace_custom_musics_form'
+  end
+  
+  def remove_music
+    # authorize! :remove_music, @playlist
+
+    @music = Music.find(params[:music_id])
+
+    if @playlist.musics.delete(@music)
+      render 'remove_music'
+    else
+      render action: :show
+    end
   end
 
   private

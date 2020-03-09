@@ -20,25 +20,60 @@ Next steps
 --> DONE
 
 * Use cancan, espcially for add animes button
---> TO TEST
+--> DONE
 
 * Password typing: mask
 --> DONE
 
 * New playlist button more visible
+--> OK
 
-* Login input on the right
+* Login input on the right: really?
 
 * Back to playlist button on animes list page and back to animes list when on page search
+--> DONE
 
 * More musics? More features?
 
-* Landing page (explanation + get started button)
+
 
 * not authorized redirect to login
+--> DONE
 
-* gme to prevent too big number of requests
+* gem to prevent too big number of requests
+--> DONE
 
 * custom urls look better
+--> DONE in part
 
 * remove music from playlist
+--> DONE
+
+FUN:
+* prettier login
+--> DONE
+* Landing page (explanation + get started button) NO
+* change colors
+--> DONE
+* pick a character  UP
+--> DONE
+
+* Send email after signup
+--> DONE
+
+* Add custom link fails silently, should not
+--> DONE
+
+* Get entire playlist link is static, should not
+--> Done
+* Uuid why not (maybe not)
+* Back to playlist button on animes and search page
+--> Done
+
+* Delete playlist
+--> DONE
+
+* Commit everything
+
+* Username
+--> DONE
