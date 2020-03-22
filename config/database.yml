@@ -8,3 +8,12 @@ development:
   port: <%= ENV['DB_PORT_DEV'] %>
   database: <%= ENV['DB_NAME_PREFIX_DEV'].presence || 'animes' %>_development
 
+production:
+  adapter: mysql2
+  pool: 5
+  encoding: utf8
+  username: <%= ENV['DB_USER_PROD'] %>
+  password: <%= ENV['DB_PASSWORD_PROD'] %>
+  host: <%= ENV['DB_HOST_PROD'] %>
+  port: <%= ENV['DB_PORT_PROD'] %>
+  database: <%= ENV['DB_NAME_PROD'] %>

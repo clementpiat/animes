@@ -31,7 +31,8 @@
 /config/master.key
 
 # Ignore images in assets
-/app/assets/images
+/app/assets/images/animes
+/app/assets/images/musics
 
 # Ignore python file
 /python
