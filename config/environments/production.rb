@@ -94,4 +94,16 @@ Rails.application.configure do
 
   # So that mailer work
   routes.default_url_options[:host] = 'localhost:3000'
+
+  config.action_mailer.default_url_options = {host: 'animesplaylist.com', protocol: 'https'}
+
+  ActionMailer::Base.smtp_settings = {
+    address: ENV['SMTP_ADDRESS'],
+    port: ENV['SMTP_PORT'],
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['SMTP_USER'].presence,
+    password: ENV['SMTP_PASSWORD'].presence,
+    authentication: ENV['SMTP_AUTHENTICATION'].presence,
+    enable_starttls_auto: true
+  }
 end

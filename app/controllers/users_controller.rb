@@ -11,9 +11,11 @@ class UsersController < ApplicationController
 
     authorize! :create, @user
 
+    @user.email_confirmed = true
     if @user.save
-      UserMailer.registration_confirmation(@user).deliver
-      redirect_to main_app.login_url, notice: 'Please confirm your email address to continue' 
+      # TODO: smtp settings
+      # UserMailer.registration_confirmation(@user).deliver
+      redirect_to main_app.login_url#, notice: 'Please confirm your email address to continue' 
     else
       render :new
     end

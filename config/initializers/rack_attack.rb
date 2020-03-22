@@ -20,9 +20,13 @@ class Rack::Attack
     end
   
     UNSAFE_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE'].freeze
-    # Throttle requests to Devise routes that must not be bruteforced. (only concerning login for now)
+    # Throttle requests to Devise routes that must not be bruteforced. (only concerning login and signup for now)
     throttle('devise/ip', limit: 5, period: 20.seconds) do |req|
       req.ip if UNSAFE_METHODS.include?(req.request_method) && req.path.starts_with?('/sessions')
+    end
+    
+    throttle('devise/ip', limit: 3, period: 60.seconds) do |req|
+      req.ip if UNSAFE_METHODS.include?(req.request_method) && req.path.starts_with?('/users')
     end
     
     ### Custom Throttle Response ###
