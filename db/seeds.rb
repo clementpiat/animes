@@ -35,3 +35,20 @@ CSV.foreach(Rails.root.join('python/2000_animes_osts_23_02_2020.csv'), headers: 
     music.anime = Anime.find(row[2].to_i + 8235)
     music.save
 end
+
+
+CSV.foreach(Rails.root.join('python/2000_animes_openings_08_03_2020.csv'), headers: true) do |row|
+    # Start at 1 because of index column in csv
+    music = Music.new({name: row[3], youtube_video_id: row[1], type: :opening})
+    # TODO: change anime ids, so dirty
+    music.anime = Anime.find(row[2].to_i + 8235)
+    music.save
+end
+
+CSV.foreach(Rails.root.join('python/2000_animes_osts_08_03_2020.csv'), headers: true) do |row|
+    # Start at 1 because of index column in csv
+    music = Music.new({name: row[3], youtube_video_id: row[1], type: :ost})
+    # TODO: change anime ids, so dirty
+    music.anime = Anime.find(row[2].to_i + 8235)
+    music.save
+end

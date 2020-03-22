@@ -4,7 +4,9 @@ class Music < ApplicationRecord
 
     as_enum :type, {ost: 0, opening: 1, custom: 2}
 
-    # validates :name, uniqueness: true 
+    # Commented out when we added custom music
+    # TODO: uniqueness by couple name/anime
+    validates :name, uniqueness: true
 
     def youtube_video_url
         "https://www.youtube.com/watch?v=#{youtube_video_id}"
