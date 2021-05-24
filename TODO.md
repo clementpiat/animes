@@ -81,4 +81,4 @@ FUN:
 Resume the project
 
 * Create python files for the seed
-* Fix display issues
+* Get rid of useless files

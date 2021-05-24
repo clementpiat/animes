@@ -68,7 +68,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml-rails', '~> 2.0'
 
 # https://github.com/twbs/bootstrap-rubygem
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
 
 # Pagination gem
