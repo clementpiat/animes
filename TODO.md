@@ -77,3 +77,8 @@ FUN:
 
 * Username
 --> DONE
+
+Resume the project
+
+* Create python files for the seed
+* Fix display issues

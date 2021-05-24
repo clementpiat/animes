@@ -14,7 +14,7 @@ require 'csv'
 # TODO: find a way to specify charset in the migration
 CSV.foreach(Rails.root.join('python/2000_first_animes_02_14_2020_safer_separator.csv'), headers: true) do |row|
     # Start at 1 because of index column in csv
-    alternative_names = row[4]&.split('emilientaip') || []
+    alternative_names = row[4]&.split('random_sep') || []
     unless Anime.where(name: row[1]).exists?
         Anime.create({name: row[1], image_file_name: row[2], rank: row[3], alternative_names: alternative_names})
     end
