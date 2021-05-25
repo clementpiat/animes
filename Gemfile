@@ -11,7 +11,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'mysql2'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '>= 4.3.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -87,3 +87,7 @@ gem 'cancancan'
 
 # Protect from bad users, limiting the number of requests
 gem 'rack-attack'
+
+gem 'activerecord', '>= 5.2.4.5'
+gem 'rack', '>= 2.2.3'
+gem 'activesupport', '>= 5.2.4.3'
