@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :playlists
 
-  as_enum :character, {naruto: 0, lee: 1, kirua: 2, vegeta: 3, tanjiro: 4, }
+  as_enum :character, {naruto: 0, lee: 1, kirua: 2, tanjiro: 3}
 
   def email_activate
     self.email_confirmed = true

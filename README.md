@@ -27,6 +27,7 @@ Create the development database by running this :
 ```
 rake db:create
 rake db:migrate
+rake db:seed
 ```
 If this fails you may want to try this to fix your mysql configuration :
 ```
