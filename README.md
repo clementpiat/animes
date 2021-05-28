@@ -2,6 +2,8 @@
 
 Small Rails app to generate a Youtube playlist of OSTs from the animes you have watched.
 
+![Overview](https://raw.githubusercontent.com/clementpiat/animes/main/animes_rails_app.gif)
+
 ## Install
 
 You will need `ruby 2.6.3`.
