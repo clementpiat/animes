@@ -1,4 +1,4 @@
-# Animes OST Playlist Generator
+# Animes OST Playlist Generator 🍜
 
 Small Rails app to generate a Youtube playlist of OSTs from the animes you have watched.
 
