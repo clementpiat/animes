@@ -23,7 +23,7 @@ sudo apt-get install libmariadb-dev
 sudo apt install mysql-server
 ```
 
-## Setup Database
+## Database setup
 
 Create the development database by running this :
 ```
